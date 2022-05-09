@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApartmentRent</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="database.js" defer></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        
+        <a class="navbar-brand" href="#usersView"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+            <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+          </svg> ApartmentRent</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav  m-auto ">
+            <li class="nav-item">
+              <a class="nav-link" id="usersView-btn" href="#usersView">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="rentView-btn" href="#rentView">Rent</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="editUserView-btn" href="#editUserTableView">Edit user</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input id="inputSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row view" id="usersView">
+         <div class="col-10 offset-1">
+            <h4 class="display-4">Users</h4>
+            <div class="row">
+               <div class="col-10 offset-1">
+                  <table class="table">
+                     <thead>
+                        <tr>
+                           <th>ID Card Number</th>
+                           <th>User</th>
+                           <th>Phone</th>
+                           <th>Room type</th>
+                           <th>Start Date</th>
+                           <th>End Date</th>
+                        </tr>
+                     </thead>
+                     <tbody id="tbodyUsersView">
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row view col-12" id="editUserTableView">
+         <div class="col-10 offset-1">
+            <h4 class="display-4">Edit user</h4>
+            <div class="row">
+               <div class="col-12 offset-1">
+                  <table class="table">
+                     <thead>
+                        <tr>
+                           <th class="text-nowrap">ID Card Number</th>
+                           <th class="text-nowrap">User</th>
+                           <th class="text-nowrap">Phone</th>
+                           <th class="text-nowrap">Room type</th>
+                           <th class="text-nowrap">Start Date</th>
+                           <th class="text-nowrap">End Date</th>
+                           <th class="text-nowrap">Action</th>
+                        </tr>
+                     </thead>
+                     <tbody id="tbodyEditUserView">
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row view" id="rentView">
+         <div class="col-10 offset-1">
+            <h4 class="display-4">Rent room</h4>
+            <div class="row">
+               <div class="col-10 offset-1">
+                  <form action="" id="rentForm">
+                     <input type="text" name="user" id="inputUserIDCard" class="form-control mb-4" placeholder="Enter user ID number card" >
+                     <input type="text" name="user" id="inputUser" class="form-control mb-4" placeholder="Enter user name">
+                     <input type="text" name="user" id="inputUserPhone" class="form-control mb-3" placeholder="Enter user phone">
+                     <label for="selectRoomType">Choose the type of room:</label>
+                     <select class="form-control mb-4" id="selectRoomType" >
+                     </select>
+                     <div class="row">
+                        <div class="col-6">
+                           <label for="inputStartDate">Enter start date:</label>
+                           <input type="date" id="inputStartDate" name="start-date">
+                        </div>
+                        <div class="col-6">
+                           <label for="inputEndDate">Enter end date:</label>
+                           <input type="date" id="inputEndDate" name="end-date">
+                        </div>
+                     </div>
+                     <input class="btn btn-primary mt-2 col-12" id="saveRent-btn" type="submit" value="Save">       
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row view" id="editUserForm">
+         <div class="col-10 offset-1">
+            <h4 class="display-4">Edit User</h4>
+            <div class="row">
+               <div class="col-10 offset-1">
+                  <form action="" id="editForm">
+                     <label for="einputUserIDCard">ID Card Number:</label>
+                     <input type="text" name="editUserIDCard" id="einputUserIDCard" class="form-control mb-4" placeholder="Enter user ID number card" >
+                     <label for="einputUser">User:</label>
+                     <input type="text" name="editUser" id="einputUser" class="form-control mb-4" placeholder="Enter user name">
+                     <label for="einputUserPhone">Phone:</label>
+                     <input type="text" name="editUserPhone" id="einputUserPhone" class="form-control mb-3" placeholder="Enter user phone">
+                     <label for="selectRoomType">Choose the type of room:</label>
+                     <select class="form-control mb-4" id="eselectRoomType" >
+                     </select>
+                     <div class="row">
+                        <div class="col-6">
+                           <label for="einputStartDate">Enter start date:</label>
+                           <input type="date" id="einputStartDate" name="editStartDate">
+                        </div>
+                        <div class="col-6">
+                           <label for="einputEndDate">Enter end date:</label>
+                           <input type="date" id="einputEndDate" name="editEndDate">
+                        </div>
+                     </div>
+                     <input class="btn btn-primary mt-2 col-12" id="editUser-btn" type="submit" value="Edit">       
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+
+
+   </div>
+        
+
+</body>
+</html>
